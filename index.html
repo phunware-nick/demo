@@ -42,10 +42,10 @@
             ad = document.createElement('div');
             ad.setAttribute('id', 'ad');
             iframe.contentWindow.document.getElementById('target').appendChild(ad);
-            console.log(ad);
           }
 
           ad.innerHTML = '';
+          ad.setAttribute('style', '');
           iframe.contentWindow.window.phunware(obj);
         };
       })();
