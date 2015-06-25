@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Phunware Ad Tag V2 Preview</title>
+		<meta charset="utf-8" />
+		<link href="resources/style.css" rel="stylesheet" type="text/css" />
+
+	</head>
+	<body>
+
+    <div id="links">
+      <a onclick="change('template/banner.html');">Standard Banner</a>&nbsp;&nbsp;
+      <a onclick="change('template/floating.html');">Floating Banner</a>&nbsp;&nbsp;
+      <a onclick="change('template/rec.html');">Medium Rect.</a>&nbsp;&nbsp;
+      <a onclick="change('template/inter.html');">Interstitial</a>&nbsp;&nbsp;
+    </div>
+
+		<div id="iphone">
+			<iframe id="iphone-iframe" src="template/banner.html" width="320" height="500" class="content"></iframe>
+		</div>
+
+    <script>
+      (function(){
+        var iframe = document.getElementById('iphone-iframe');
+        window.change = function(uri) {
+          uri = uri || 'template/banner.html';
+          iframe.setAttribute('src', uri);
+        }
+      })();
+    </script>
+
+	</body>
+</html>
+
