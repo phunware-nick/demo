@@ -34,4 +34,5 @@
 
 #links a {
 	text-decoration: underline;
+  cursor: pointer;
 }
