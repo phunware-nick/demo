@@ -9,23 +9,45 @@
 	<body>
 
     <div id="links">
-      <a onclick="change('template/banner.html');">Standard Banner</a>&nbsp;&nbsp;
-      <a onclick="change('template/floating.html');">Floating Banner</a>&nbsp;&nbsp;
-      <a onclick="change('template/rec.html');">Medium Rect.</a>&nbsp;&nbsp;
-      <a onclick="change('template/inter.html');">Interstitial</a>&nbsp;&nbsp;
+      <a onclick="change({ zone: 1 });">Standard Banner</a>&nbsp;&nbsp;
+      <a onclick="change({ zone: 1 }, '#ad{ position:fixed; bottom: -4px; left: 0; z-index: 1000; }');">Floating Banner</a>&nbsp;&nbsp;
+      <a onclick="change({ zone: 32553 }, '#ad{ width: 300px; margin: 0 auto; }');">Medium Rect.</a>&nbsp;&nbsp;
+      <a onclick="change({ zone: 67245 });">Interstitial</a>&nbsp;&nbsp;
     </div>
 
 		<div id="iphone">
-			<iframe id="iphone-iframe" src="template/banner.html" width="320" height="500" class="content"></iframe>
+			<iframe id="iphone-iframe" src="banner.html" width="320px" height="500px" class="content"></iframe>
 		</div>
 
     <script>
       (function(){
         var iframe = document.getElementById('iphone-iframe');
-        window.change = function(uri) {
-          uri = uri || 'template/banner.html';
-          iframe.setAttribute('src', uri);
-        }
+
+        window.change = function(obj, css) {
+          obj = obj || {};
+          css = css || '';
+
+          obj.zone = obj.zone || 1;
+          obj.elementId = obj.elementId || 'ad';
+          obj.mode = obj.mode || 'test';
+
+          // Inject styles
+          var styles = iframe.contentWindow.document.getElementById('styles');
+          styles.innerText = css;
+
+          // Inject the ad
+          var ad = iframe.contentWindow.document.getElementById('ad');
+
+          if(!ad) {
+            ad = document.createElement('div');
+            ad.setAttribute('id', 'ad');
+            iframe.contentWindow.document.getElementById('target').appendChild(ad);
+            console.log(ad);
+          }
+
+          ad.innerHTML = '';
+          iframe.contentWindow.window.phunware(obj);
+        };
       })();
     </script>
 

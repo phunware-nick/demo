@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PW</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      font-size: 14px;
+    }
+  </style>
+
+  <style id="styles"></style>
+
+  <link rel="stylesheet" href="../resources/uaAlert.css">
+
+</head>
+<body>
+  <div id="alert" style="display:none;">iPhone user-agent required to preview this ad.</div>
+  <img src="resources/header.png">
+
+  <div id="target">
+    <div id="ad"></div>
+  </div>
+
+  <img src="resources/body.png">
+
+  <script src="../resources/userAgent.js"></script>
+  <script>
+    (function(w, d, e, s, n, a, m){
+      w[n] = w[n] || function() {
+        (w[n].q = w[n].q || []).push(arguments);
+      };
+      a = d.createElement(e);
+      m = d.getElementsByTagName(e)[0];
+      a.async = 1;
+      a.src = s + '?' + 1 * new Date();
+      m.parentNode.insertBefore(a,m);
+    })(window, document, 'script', 'https://s3.amazonaws.com/img.tapit.com/js/tapit.v2.js', 'phunware');
+
+    phunware({ zone: 1, elementId: 'ad', mode: 'test' });
+  </script>
+</body>
+</html>
